@@ -1,5 +1,10 @@
+//Список архивов
+val archives: MutableList<Archive> = mutableListOf()
+//Основное меню (меню архивов)
+var archiveMenu:ArchiveMenu = ArchiveMenu()
+//Список меню заметок для каждого архива
+val noteMenu: MutableList<NoteMenu> = mutableListOf()
+
 fun main() {
-    // ваш код начнется здесь
-    // вы не должны ограничиваться только классом Main и можете создавать свои классы по необходимости
-    println("Привет")
+    archiveMenu.printMenu()
 }
