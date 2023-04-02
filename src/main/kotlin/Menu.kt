@@ -4,8 +4,21 @@ abstract class Menu {
     abstract val lastMenuPoint:Int
 
 //Проверка состоит ли строка только из цифр
-    fun isNumeric(toCheck: String): Boolean {
+  private fun isNumeric(toCheck: String): Boolean {
         return toCheck.all { char -> char.isDigit() }
+    }
+//Удаляет нули из начала строки
+    private fun removeLeadingNull(string:String):String{
+        val chars:MutableList<Char> = string.toMutableList()
+        var firstNoNullIndex = 0
+        for (i in 0..chars.size-1){
+            if (!chars[i].equals('0')){
+                firstNoNullIndex = i
+                break
+            }
+            if (i==chars.size-1) firstNoNullIndex = chars.size-1
+        }
+        return string.substring(firstNoNullIndex)
     }
 //Печать меню
     open fun printMenu(){
@@ -22,8 +35,8 @@ abstract class Menu {
         var userInput = ""
         while(!madeChoice){
             userInput = scan.nextLine()
-            //Если ввод содержит буквы или ввод это число вне диапозона существующих пунктов меню
-            if ((!isNumeric(userInput))||(userInput.toInt() > lastMenuPoint)) {
+            //Если ввод содержит буквы или ввод это число вне диапозона существующих пунктов меню или пустая строка
+            if ((userInput.equals("")) || (!isNumeric(userInput)) || (userInput.toInt() > lastMenuPoint) || (!userInput.equals(removeLeadingNull(userInput)))) {
                 println("Неверная команда. Попробуйте снова")
                 printMenu()
             }

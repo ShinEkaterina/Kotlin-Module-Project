@@ -6,8 +6,8 @@ class ArchiveMenu() : Menu(){
     override var lastMenuPoint = 1
     //Список пунктов меню - заголовок и действие, которое необходимо выполнить при выборе пункта
     override val menuPoints:MutableList<MenuPoint> = mutableListOf(
-        MenuPoint("0. Создать архив", {menuPointIndex:Int -> addMenuPoint()}),
-        MenuPoint("1. Выход",{menuPointIndex:Int -> quit()})
+        MenuPoint("0. Создать архив") { _ -> addMenuPoint() },
+        MenuPoint("1. Выход") { _ -> quit() }
     )
 
     override fun addMenuPoint(){
